@@ -37,6 +37,7 @@
         .navbar-custom {
             background-color: #3e0bb5;
         }
+
     </style>
 </head>
 
@@ -164,8 +165,35 @@
         </div>
     </main>
 
+   <!-- Toast Container -->
+<div class="position-fixed p-3" style="top: 1rem; right: 45rem; z-index: 1050;">
+  <div id="vote-toast" class="toast align-items-center border-0 custom-red" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body" id="vote-toast-body" style="font-weight: bold;">
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+
+       function showToast(message, type = 'danger') {
+    const toastEl = document.getElementById('vote-toast');
+    const toastBody = document.getElementById('vote-toast-body');
+
+    // Renk ayarla (Bootstrap sınıfları)
+    toastEl.className = `toast align-items-center text-white bg-${type} border-0`;
+
+    toastBody.textContent = message;
+
+    const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+    toast.show();
+}
+
         // Vote function
         function vote(songId) {
             fetch('/vote/' + songId, { method: 'POST' })
@@ -174,7 +202,7 @@
                     if (data.success) {
                         location.reload();
                     } else {
-                        alert(data.message);
+                        showToast(data.message, 'danger');
                     }
                 })
                 .catch(error => {
