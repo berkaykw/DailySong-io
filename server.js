@@ -42,86 +42,7 @@ db.connect((err) => {
     return;
   }
   console.log('Connected to MySQL database');
-  createTables();
 });
-
-// Create tables if they don't exist
-function createTables() {
-  const createWeeksTable = `
-    CREATE TABLE IF NOT EXISTS weeks (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      week_number INT UNIQUE NOT NULL,
-      start_date DATETIME NOT NULL,
-      end_date DATETIME NULL,
-      is_active BOOLEAN DEFAULT FALSE,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
-  `;
-
-  const createSongsTable = `
-    CREATE TABLE IF NOT EXISTS songs (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      title VARCHAR(100) NOT NULL,
-      artist VARCHAR(100) NOT NULL,
-      added_by VARCHAR(50) NOT NULL,
-      spotify_url VARCHAR(500) NULL,
-      youtube_url VARCHAR(500) NULL,
-      week_id INT NOT NULL,
-      votes INT DEFAULT 0,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY (week_id) REFERENCES weeks(id)
-    )
-  `;
-
-  const createVotesTable = `
-    CREATE TABLE IF NOT EXISTS votes (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      song_id INT NOT NULL,
-      voter_ip VARCHAR(45) NOT NULL,
-      voter_agent TEXT,
-      week_id INT NOT NULL,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY (song_id) REFERENCES songs(id),
-      FOREIGN KEY (week_id) REFERENCES weeks(id),
-      UNIQUE KEY unique_vote (song_id, voter_ip)
-    )
-  `;
-
-  // Create weeks table
-  db.query(createWeeksTable, (err) => {
-    if (err) console.error('Error creating weeks table:', err);
-  });
-
-  // Create songs table
-  db.query(createSongsTable, (err) => {
-    if (err) console.error('Error creating songs table:', err);
-  });
-
-  // Create votes table
-  db.query(createVotesTable, (err) => {
-    if (err) console.error('Error creating votes table:', err);
-    else initializeWeek();
-  });
-}
-
-// Initialize first week if no active week exists
-function initializeWeek() {
-  db.query('SELECT * FROM weeks WHERE is_active = TRUE', (err, results) => {
-    if (err) {
-      console.error('Error checking active week:', err);
-      return;
-    }
-
-    if (results.length === 0) {
-      // Create first week
-      const query = 'INSERT INTO weeks (week_number, start_date, is_active) VALUES (1, NOW(), TRUE)';
-      db.query(query, (err) => {
-        if (err) console.error('Error creating first week:', err);
-        else console.log('First week initialized');
-      });
-    }
-  });
-}
 
 // Routes
 
@@ -360,3 +281,5 @@ cron.schedule('0 0 * * 0', async () => {
 app.listen(PORT, () => {
   console.log(`DailySong.io server running on port ${PORT}`);
 });
+
+
