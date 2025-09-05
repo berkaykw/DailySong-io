@@ -19,6 +19,41 @@
         .navbar-custom {
             background-color: #3e0bb5;
         }
+
+        /* Normal (light mode) */
+        .custom-card-header {
+            background-color: black;
+        }
+
+        /* Dark mode aktifken */
+        body.dark-mode .custom-card-header {
+            background-color: #333;
+            /* veya #1e1e1e */
+        }
+
+        /* Dark mode genel */
+        body.dark-mode {
+            background-color: #121212;
+            color: #f1f1f1;
+        }
+
+
+        /* Kartlar */
+        body.dark-mode .card {
+            background-color: #1e1e1e;
+            border-color: #333;
+        }
+
+        /* Başlık ve yazılar */
+        body.dark-mode h1,
+        body.dark-mode h5,
+        body.dark-mode h6 {
+            color: #f1f1f1;
+        }
+
+        body.dark-mode .text-muted {
+            color: #bbb !important;
+        }
     </style>
 </head>
 
@@ -29,10 +64,19 @@
             <a style="font-size: 24px;" class="navbar-brand" href="/">
                 <i class="fas fa-music me-2"></i>DailySong.io
             </a>
+
+            <!-- Linkler -->
             <div class="navbar-nav me-auto">
                 <a style="font-weight: bold; color:rgb(204, 203, 203);" class="nav-link" href="/">Ana Sayfa</a>
                 <a style="font-weight: bold; color:rgb(204, 203, 203);" class="nav-link" href="/add-song">Şarkı Ekle</a>
                 <a style="font-weight: bold; color:rgb(204, 203, 203);" class="nav-link" href="/archive">Arşiv</a>
+            </div>
+
+            <!-- Sağ tarafa buton -->
+            <div class="d-flex ms-auto">
+                <button id="darkModeToggle" class="btn btn-outline-light">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
         </div>
     </nav>
@@ -42,11 +86,12 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header text-white" style="background-color: black;">
+                    <div class="card-header text-white custom-card-header">
                         <h3 class="card-title mb-0">
                             <i class="fas fa-plus me-2"></i>Yeni Şarkı Ekle
                         </h3>
                     </div>
+
                     <div class="card-body">
                         <% if (error) { %>
                             <div class="alert alert-danger">
@@ -107,6 +152,27 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const toggleBtn = document.getElementById("darkModeToggle");
+        const body = document.body;
+
+        // LocalStorage’dan daha önce seçilmiş tema varsa yükle
+        if (localStorage.getItem("theme") === "dark") {
+            body.classList.add("dark-mode");
+        }
+
+        toggleBtn.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+
+            // Kullanıcının seçimini kaydet
+            if (body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+            } else {
+                localStorage.setItem("theme", "light");
+            }
+        });
+    </script>
 </body>
 
 </html>

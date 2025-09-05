@@ -37,26 +37,59 @@
         .navbar-custom {
             background-color: #3e0bb5;
         }
+        /* Dark mode genel */
+body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+
+/* Kartlar */
+body.dark-mode .card {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+/* Başlık ve yazılar */
+body.dark-mode h1, 
+body.dark-mode h5, 
+body.dark-mode h6 {
+    color: #f1f1f1;
+}
+body.dark-mode .text-muted {
+    color: #bbb !important;
+}
+
 
     </style>
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-        <div class="container">
-            <a style="font-size: 24px;" class="navbar-brand" href="/">
-                <i class="fas fa-music me-2"></i>DailySong.io
-            </a>
-            <div class="navbar-nav me-auto">
-                <a style="font-weight: bold; color:rgb(204, 203, 203);" class="nav-link" href="/">Ana Sayfa</a>
-                <a style="font-weight: bold; color:rgb(204, 203, 203);" class="nav-link" href="/add-song">Şarkı Ekle</a>
-                <a style="font-weight: bold; color:rgb(204, 203, 203);" class="nav-link" href="/archive">Arşiv</a>
-            </div>
-        </div>
-    </nav>
+   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+        <a style="font-size: 24px;" class="navbar-brand" href="/">
+            <i class="fas fa-music me-2"></i>DailySong.io
+        </a>
 
-    <!-- Main Content -->
+        <!-- Linkler -->
+        <div class="navbar-nav me-auto">
+            <a style="font-weight: bold; color:rgb(204, 203, 203);" class="nav-link" href="/">Ana Sayfa</a>
+            <a style="font-weight: bold; color:rgb(204, 203, 203);" class="nav-link" href="/add-song">Şarkı Ekle</a>
+            <a style="font-weight: bold; color:rgb(204, 203, 203);" class="nav-link" href="/archive">Arşiv</a>
+        </div>
+
+        <!-- Sağ tarafa buton -->
+        <div class="d-flex ms-auto">
+            <button id="darkModeToggle" class="btn btn-outline-light">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Main Conten t -->
     <main class="container my-4">
         <div class="row">
             <div class="col-12">
@@ -223,6 +256,25 @@
                 vote(id);
             });
         });
+
+    const toggleBtn = document.getElementById("darkModeToggle");
+    const body = document.body;
+
+    // LocalStorage’dan daha önce seçilmiş tema varsa yükle
+    if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark-mode");
+    }
+
+    toggleBtn.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+
+        // Kullanıcının seçimini kaydet
+        if (body.classList.contains("dark-mode")) {
+            localStorage.setItem("theme", "dark");
+        } else {
+            localStorage.setItem("theme", "light");
+        }
+    });
     </script>
 </body>
 
