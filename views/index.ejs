@@ -222,8 +222,7 @@ body.dark-mode .text-muted {
        function showToast(message, type = 'danger') {
     const toastEl = document.getElementById('vote-toast');
     const toastBody = document.getElementById('vote-toast-body');
-
-    // Renk ayarla (Bootstrap sınıfları)
+    
     toastEl.className = `toast align-items-center text-white bg-${type} border-0`;
 
     toastBody.textContent = message;
