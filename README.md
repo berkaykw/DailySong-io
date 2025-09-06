@@ -20,7 +20,7 @@ At the end of the week, the most voted songs are highlighted, the week is closed
 ## 🛠 Tech Stack
 - **Backend:** Node.js (Express.js)  
 - **Database:** MySQL  
-- **Frontend:** EJS + Bootstrap (with Dark Mode support)  
+- **Frontend:** EJS + Bootstrap
 - **Other:** Express-session, body-parser, node-cron  
 
 ---
