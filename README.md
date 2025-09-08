@@ -25,6 +25,8 @@ At the end of the week, the most voted songs are highlighted, the week is closed
 
 ---
 
+
+
 ## 📂 Installation
 ```bash
 # Clone the repo
@@ -43,11 +45,12 @@ DB_NAME=yourdbname
 
 # Start the server
 node app.js
+```
 
 <img width="1461" height="837" alt="Screenshot_2" src="https://github.com/user-attachments/assets/30989902-450b-48bd-b859-0cf53c639b22" />
 <img width="1461" height="837" alt="<img width="1521" height="815" alt="444" src="https://github.com/user-attachments/assets/4b9e2094-93e2-4659-81fa-0e08038c7c95" />
 <img width="1417" height="782" alt="333" src="https://github.com/user-attachments/assets/9caf05fd-e1e5-4878-ae26-c2b4fd503519" />
 <img width="1457" height="823" alt="222" src="https://github.com/user-attachments/assets/2a6e385c-403c-4b2a-bfed-067eb92f5534" />
-<img width="1681" height="823" alt="111" src="https://github.com/user-attachments/assets/15dd1303-39b3-4fa2-a717-3d7058ca0e31" />
-Screenshot_2" src="https://github.com/user-attachments/assets/7fef6369-9a91-40a2-92d8-569f6f6bbe5c" />
+<img width="1681" height="823" alt="111" src="https://github.com/user-attachments/assets/15dd1303-39b3-4fa2-a717-3d7058ca0e31" /><img width="1512" height="817" alt="Screenshot_3" src="https://github.com/user-attachments/assets/75b76810-12c9-4264-919a-8edf36f86715" />
+
 
