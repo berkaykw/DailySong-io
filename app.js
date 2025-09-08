@@ -14,6 +14,9 @@ const voteRoutes = require('./routes/vote');
 // Cron jobs
 const weeklyReset = require('./cron/weeklyReset');
 
+// Manual reset function
+const resetWeekManually = require('./cron/resetWeek');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -39,6 +42,12 @@ app.use('/', indexRoutes);       // Home page
 app.use('/', songRoutes);        // Add song pages
 app.use('/archive', archiveRoutes); // Archive pages
 app.use('/vote', voteRoutes);    // Vote for songs
+
+// Manual reset route (test amaçlı)
+app.get('/reset-week', (req, res) => {
+  resetWeekManually();
+  res.send('⏳ Weekly reset triggered manually. Check console/logs.');
+});
 
 // Start cron jobs
 weeklyReset();
