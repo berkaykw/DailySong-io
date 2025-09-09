@@ -17,6 +17,7 @@ At the end of the week, the most voted songs are highlighted, the week is closed
 
 ---
 
+
 ## 🛠 Tech Stack
 - **Backend:** Node.js (Express.js)  
 - **Database:** MySQL  
