@@ -26,7 +26,6 @@ At the end of the week, the most voted songs are highlighted, the week is closed
 ---
 
 
-
 ## 📂 Installation
 ```bash
 # Clone the repo
