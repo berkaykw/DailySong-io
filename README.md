@@ -6,7 +6,6 @@ At the end of the week, the most voted songs are highlighted, the week is closed
 
 ---
 
-
 ## 🚀 Features
 -  Weekly song list  
 -  Add **one song per day**  
