@@ -16,7 +16,6 @@ At the end of the week, the most voted songs are highlighted, the week is closed
 -  **Dark Mode** support  
 
 ---
-
 ## 🛠 Tech Stack
 - **Backend:** Node.js (Express.js)  
 - **Database:** MySQL  
